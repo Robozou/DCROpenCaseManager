@@ -25,6 +25,7 @@ namespace OpenCaseManager
             app.UseOpenIdConnectAuthentication(
                 new OpenIdConnectAuthenticationOptions
                 {
+                    RequireHttpsMetadata = false,
                     // Sets the ClientId, authority, RedirectUri as obtained from web.config
                     ClientId = Configurations.Config.ClientId,
                     Authority = string.Format(Configurations.Config.Authority, Configurations.Config.Tenant),
