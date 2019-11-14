@@ -4,37 +4,66 @@
   https://go.microsoft.com/fwlink/?LinkId=301879
   -->
 <configuration>
+  <connectionStrings>
+    <add name="Default" connectionString="XXX" />
+  </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="3.0.0.0" />
     <add key="webpages:Enabled" value="false" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+    <add key="ClientId" value="XXX" />
+    <add key="Authority" value="https://login.microsoftonline.com/{0}" />
+    <add key="Tenant" value="XXX.onmicrosoft.com/" />
+    <add key="RedirectUri" value="http://localhost:53065/" />
+    <add key="DCRActiveRepository" value="https://repository.dcrgraphs.net" />
+    <add key="DCRActiveRepositoryUser" value="XXX" />
+    <add key="DCRActiveRepositoryUserPassword" value="XXX" />
+    <add key="UseProcessEngine" value="false" />
+    <add key="DocFormServerUrl" value="https://form.dcrgraphs.net" />
+    <add key="AutomaticEventsLimit" value="5" />
+    <add key="EmployeeObject" value="Employee" />
+    <add key="FileName" value="Test.docx" />
+    <add key="PersonalFileLocation" value="XXX\OpenCaseManager\App_Data\Person\" />
+    <add key="InstanceFileLocation" value="XXX\OpenCaseManager\App_Data\Instance\" />
+    <add key="MUSGraphId" value="4013" />
+    <add key="FormInstructionHtmlLocation" value="XXX\OpenCaseManager\HtmlTemplates\FormInstruction.html" />
+    <add key="MUSInstructionHtmlLocation" value="XXX\OpenCaseManager\HtmlTemplates\Instruction.html" />
+    <add key="MUSLeaderRole" value="Leder" />
+    <add key="MUSEmployeeRole" value="Medarbejder" />
+    <add key="HideDocumentWebpart" value="false" />
+    <add key="NodeWordDocumentServer" value="" />
+    <add key="LogToAcadre" value="false" />
   </appSettings>
   <system.web>
     <compilation debug="true" targetFramework="4.6.1" />
     <httpRuntime targetFramework="4.6.1" />
     <httpModules>
       <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" />
+      <add name="TelemetryCorrelationHttpModule" type="Microsoft.AspNet.TelemetryCorrelation.TelemetryCorrelationHttpModule, Microsoft.AspNet.TelemetryCorrelation" />
     </httpModules>
   </system.web>
   <system.webServer>
+
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules>
+      <remove name="TelemetryCorrelationHttpModule" />
+      <remove name="ApplicationInsightsWebTracking" />
+      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" preCondition="managedHandler" />
+      <add name="TelemetryCorrelationHttpModule" type="Microsoft.AspNet.TelemetryCorrelation.TelemetryCorrelationHttpModule, Microsoft.AspNet.TelemetryCorrelation" preCondition="managedHandler" />
+    </modules>
     <handlers>
       <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
       <remove name="OPTIONSVerbHandler" />
       <remove name="TRACEVerbHandler" />
       <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="*" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
     </handlers>
-    <validation validateIntegratedModeConfiguration="false" />
-    <modules>
-      <remove name="ApplicationInsightsWebTracking" />
-      <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web" preCondition="managedHandler" />
-    </modules>
   </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
       <dependentAssembly>
         <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
-        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+        <bindingRedirect oldVersion="0.0.0.0-11.0.0.0" newVersion="11.0.0.0" />
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
@@ -54,7 +83,43 @@
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
-        <bindingRedirect oldVersion="1.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+        <bindingRedirect oldVersion="0.0.0.0-5.2.6.0" newVersion="5.2.6.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="PdfSharp" publicKeyToken="f94615aa0424f9eb" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-1.50.5147.0" newVersion="1.50.5147.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Unity.Abstractions" publicKeyToken="6d32ff45e0ccc69f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.3.1.0" newVersion="3.3.1.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Tokens" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.IdentityModel.Tokens.Jwt" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols.WsFederation" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols.OpenIdConnect" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.IdentityModel.Protocols" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-5.3.0.0" newVersion="5.3.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Memory" publicKeyToken="cc7b13ffcd2ddd51" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.1.1" newVersion="4.0.1.1" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.4.1.9004" newVersion="3.4.1.9004" />
       </dependentAssembly>
     </assemblyBinding>
   </runtime>
