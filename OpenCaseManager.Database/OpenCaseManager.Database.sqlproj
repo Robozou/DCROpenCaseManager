@@ -123,6 +123,7 @@
     <Build Include="dbo\Tables\StamdataChild.sql" />
     <Build Include="dbo\Views\Timeline.sql" />
     <Build Include="dbo\Functions\JournalHistoryForASingleInstance.sql" />
+    <Build Include="dbo\Views\ChildView.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Data\Script.PreDeployment.sql" />
